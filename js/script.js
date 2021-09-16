@@ -29,13 +29,17 @@ function showPage(list, page) {
 			const h3 = document.createElement('h3');
 			h3.textContent = `${list[i].name.first} ${list[i].name.last}`;
 			divStudent.appendChild(h3);
+			const email = document.createElement('span');
+			email.className = 'email';
+			email.textContent = `${list[i].email}`;
+			divStudent.appendChild(email);
 			const divJoined = document.createElement('div');
 			divJoined.className = 'joined-details';
 			li.appendChild(divJoined);
-			const span = document.createElement('span');
-			span.className = 'date';
-			span.innerHTML = `Joined ${list[i].registered.date}`;
-			divJoined.appendChild(span);
+			const joined = document.createElement('span');
+			joined.className = 'date';
+			joined.innerHTML = `Joined ${list[i].registered.date}`;
+			divJoined.appendChild(joined);
 
 		}
 	}
@@ -94,6 +98,6 @@ div.addEventListener('click', (e) => {
 	}
 });
 
-// Call functions
+// function calls
 showPage(data, 1);
 addPagination(data);
