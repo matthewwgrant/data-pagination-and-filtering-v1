@@ -1,6 +1,7 @@
 
+// global variables
 const div = document.querySelector('.pagination');
-
+const header = document.querySelector('.header');
 
 /*
 	The showPage function uses a start and end index, based
@@ -80,6 +81,50 @@ function addPagination(list) {
 	}
 }
 
+/*
+	createSearch function dynamically creates a 
+	search bar and appends it to the page
+*/
+
+function createSearch() {
+	const label = document.createElement('label');
+	label.setAttribute('for', 'search');
+	label.className = 'student-search';
+	header.insertAdjacentElement('beforeend', label);
+	const span = document.createElement('span');
+	span.textContent = 'Search by name';
+	label.appendChild(span);
+	const input = document.createElement('input');
+	input.id = 'search';
+	input.placeholder = 'Search by name...';
+	label.appendChild(input);
+	const btn = document.createElement('button');
+	btn.type = 'button';
+	label.appendChild(btn);
+	const img = document.createElement('img');
+	img.src = 'img/icn-search.svg';
+	img.alt = 'Search icon';
+	btn.appendChild(img);
+}
+
+/*
+	runSearch functions searches through all names in the
+	data object and returns any matches based off of the
+	value of the search input field
+*/
+function runSearch(searchInput, list) {
+	for ( let i = 0; i < list.length; i++ ) {
+		const fullName = `${list[i].name.first.toLowerCase()} ${list[i].name.last.toLowerCase()}`;
+		if ( searchInput.value.length !== 0 && fullName.includes(searchInput.value.toLowerCase()) ) {
+			console.log(fullName);
+		} else {
+			// list[i].style.display = 'none';
+			console.log(list[i].style.display);
+		}
+	}
+}
+
+	
 
 /*
 	Event listener checks to loops over all of the buttons
@@ -91,13 +136,24 @@ div.addEventListener('click', (e) => {
 	for ( let i = 0; i < buttons.length; i++ ) {
 		if ( e.target === buttons[i] ) {
 				buttons[i].className = 'active';
-				showPage(data, buttons[i].textContent )
+				showPage( data, buttons[i].textContent )
 		} else{
 			buttons[i].className = '';
 		}
 	}
 });
 
+header.addEventListener('click', (e) => {
+	const searchInfo = document.querySelector('input');
+	if (e.target.tagName.toLowerCase() === 'button' || e.target.tagName.toLowerCase() === 'img') {
+		runSearch(searchInfo, data);
+	}
+});
+
 // function calls
 showPage(data, 1);
 addPagination(data);
+createSearch();
+// runSearch(searchInfo, data);
+
+
