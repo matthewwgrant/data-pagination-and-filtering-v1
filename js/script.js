@@ -10,7 +10,7 @@ For assistance:
    Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
    Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
 */
-
+const div = document.querySelector('.pagination');
 
 
 /*
@@ -84,6 +84,17 @@ function addPagination(list) {
 	}
 }
 
+div.addEventListener('click', (e) => {
+	const buttons = document.querySelectorAll('button[type="button"]');
+	for ( let i = 0; i < buttons.length; i++ ) {
+		if ( e.target === buttons[i] ) {
+				buttons[i].className = 'active';
+				showPage(data, buttons[i].textContent )
+		} else{
+			buttons[i].className = '';
+		}
+	}
+});
 
 // Call functions
 showPage(data, 1);
