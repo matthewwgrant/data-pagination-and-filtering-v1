@@ -1,2 +1,1 @@
-# data-pagination-and-filtering-v1
- Data Pagination and Filtering
+This project takes the user data from the data object and displays 9 users per page. It also dynamically creates a page link for each set of 9 users based off of the number of users.

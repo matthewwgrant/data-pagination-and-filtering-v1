@@ -1,21 +1,12 @@
-/*
-Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering
-*/
 
-
-
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
 const div = document.querySelector('.pagination');
 
 
 /*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
+	The showPage function uses a start and end index, based
+	off of the page number and users displayed per page
+	to dynamically create the html elements and display
+	the user information
 */
 function showPage(list, page) {
 	startIndex = (page * 9) - 9;
@@ -54,8 +45,9 @@ function showPage(list, page) {
  
 
 /*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
+	This function creates the buttons based upon 
+	the number of pages that are needed to display
+	all users with 9 per page
 */
 function addPagination(list) {
 	const numOfButtons = Math.ceil(list.length / 9);
@@ -84,6 +76,12 @@ function addPagination(list) {
 	}
 }
 
+
+/*
+	Event listener checks to loops over all of the buttons
+	with the type of button. It then sets the className of
+	the target to active and all other buttons to no className
+*/
 div.addEventListener('click', (e) => {
 	const buttons = document.querySelectorAll('button[type="button"]');
 	for ( let i = 0; i < buttons.length; i++ ) {
