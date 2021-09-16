@@ -33,9 +33,8 @@ function showPage(list, page) {
 			li.appendChild(divStudent);
 			const img = document.createElement('img');
 			img.className = 'avatar';
-			img.src = list[i].picture.medium;
+			img.src = list[i].picture.large;
 			divStudent.appendChild(img);
-			console.log(li)
 			const h3 = document.createElement('h3');
 			h3.textContent = `${list[i].name.first} ${list[i].name.last}`;
 			divStudent.appendChild(h3);
@@ -58,8 +57,34 @@ function showPage(list, page) {
 Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
- 
+function addPagination(list) {
+	const numOfButtons = Math.ceil(list.length / 9);
+	const ul = document.querySelector('.link-list');
+	ul.innerHTML = '';
+
+	for ( let i = 0; i < numOfButtons; i++ ) {
+		let display = i + 1;
+		if ( display === 1 ) {
+			const li = document.createElement('li');
+			ul.insertAdjacentElement('beforeend', li);
+			const btn = document.createElement('button');
+			btn.type = 'button';
+			btn.className = 'active';
+			btn.textContent = display;
+			li.appendChild(btn);
+		} else {
+			const li = document.createElement('li');
+			ul.insertAdjacentElement('beforeend', li);
+			const btn = document.createElement('button');
+			btn.type = 'button';
+			btn.className = '';
+			btn.textContent = display;
+			li.appendChild(btn);
+		}
+	}
+}
 
 
 // Call functions
 showPage(data, 1);
+console.log(addPagination(data));
