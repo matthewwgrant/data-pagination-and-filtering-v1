@@ -87,4 +87,4 @@ function addPagination(list) {
 
 // Call functions
 showPage(data, 1);
-console.log(addPagination(data));
+addPagination(data);
