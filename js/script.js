@@ -44,6 +44,7 @@ function showPage(list, page) {
 
 		}
 	}
+	return ul;
 }
 
 
@@ -79,6 +80,7 @@ function addPagination(list) {
 			li.appendChild(btn);
 		}
 	}
+	return ul;
 }
 
 /*
@@ -113,15 +115,22 @@ function createSearch() {
 	value of the search input field
 */
 function runSearch(searchInput, list) {
+	let results = [];
+	const ul = document.querySelectorAll
 	for ( let i = 0; i < list.length; i++ ) {
 		const fullName = `${list[i].name.first.toLowerCase()} ${list[i].name.last.toLowerCase()}`;
 		if ( searchInput.value.length !== 0 && fullName.includes(searchInput.value.toLowerCase()) ) {
-			console.log(fullName);
-		} else {
-			// list[i].style.display = 'none';
-			console.log(list[i].style.display);
+			// console.log(fullName);
+			results.push(list[i]);
 		}
 	}
+	// if ( results.length === 0 ) {
+	// 	ul.innerHTML = `<h3>Sorry, there were no matching results</h3>`;
+	// 	console.log(results.length);
+	// } else {
+		return results;
+	// }
+	
 }
 
 	
@@ -146,14 +155,27 @@ div.addEventListener('click', (e) => {
 header.addEventListener('click', (e) => {
 	const searchInfo = document.querySelector('input');
 	if (e.target.tagName.toLowerCase() === 'button' || e.target.tagName.toLowerCase() === 'img') {
-		runSearch(searchInfo, data);
-	}
+		const searchResults = runSearch(searchInfo, data);
+		// console.log(searchInfo.value);
+		console.log(searchResults);
+		if (searchResults.length === 0 ) {
+			document.querySelectorAll('ul.student-list').innerHTML = `<h3>Sorry, no reults found</h3>`;
+		} else if ( searchResults.length > 0 ) {
+			showPage(searchResults, 1);
+			addPagination(searchResults);
+		}
+
+
+		console.log(searchResults.length);
+	} 
+
+
 });
 
 // function calls
 showPage(data, 1);
 addPagination(data);
 createSearch();
-// runSearch(searchInfo, data);
+
 
 
