@@ -1,7 +1,9 @@
 
 // global variables
+
 const div = document.querySelector('.pagination');
 const header = document.querySelector('.header');
+
 
 /*
 	The showPage function uses a start and end index, based
@@ -9,6 +11,7 @@ const header = document.querySelector('.header');
 	to dynamically create the html elements and display
 	the user information
 */
+
 function showPage(list, page) {
 	startIndex = (page * 9) - 9;
 	endIndex = (page * 9) - 1;
@@ -47,13 +50,12 @@ function showPage(list, page) {
 }
 
 
- 
-
 /*
 	This function creates the buttons based upon 
 	the number of pages that are needed to display
 	all users with 9 per page
 */
+
 function addPagination(list) {
 	const numOfButtons = Math.ceil(list.length / 9);
 	const ul = document.querySelector('.link-list');
@@ -80,6 +82,7 @@ function addPagination(list) {
 		}
 	}
 }
+
 
 /*
 	createSearch function dynamically creates a 
@@ -150,6 +153,7 @@ div.addEventListener('click', (e) => {
 	}
 });
 
+
 /*
 	Event listener searches as soon as the input
 	field is typed into. It shows students and 
@@ -165,13 +169,14 @@ header.addEventListener('keyup', (e) => {
 	const searchResults = runSearch(searchInfo, data);
 
 	if ( searchResults.length === 0 && searchInfo.value.length !== 0 ) {
-		document.querySelector('ul.student-list').innerHTML = `<h3>Sorry, no results found</h3>`;
+		document.querySelector('ul.student-list').innerHTML = `<h2>Sorry, no results found</h2>`;
 		document.querySelector('.pagination').style.display = 'none'; 
 
 	} else if ( searchResults.length > 0 ) {
 		showPage(searchResults, 1);
 		addPagination(searchResults);
-
+		document.querySelector('.pagination').style.display = 'block'; 
+		
 		div.addEventListener('click', (e) => {
 			const buttons = document.querySelectorAll('button[type="button"]');
 			for ( let i = 0; i < buttons.length; i++ ) {
@@ -188,7 +193,7 @@ header.addEventListener('keyup', (e) => {
 		showPage(data, 1);
 		addPagination(data);
 		document.querySelector('.pagination').style.display = 'block'; 
-		
+
 		div.addEventListener('click', (e) => {
 			const buttons = document.querySelectorAll('button[type="button"]');
 			for ( let i = 0; i < buttons.length; i++ ) {
@@ -203,7 +208,9 @@ header.addEventListener('keyup', (e) => {
 	}
 })
 
+
 // function calls
+
 showPage(data, 1);
 addPagination(data);
 createSearch();

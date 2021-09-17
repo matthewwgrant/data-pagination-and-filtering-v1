@@ -1,1 +1,1 @@
-This project takes the user data from the data object and displays 9 users per page. It also dynamically creates a page link for each set of 9 users based off of the number of users.
+This project takes the user data from the data object and displays 9 users per page. It also dynamically creates a page link for each set of 9 users based off of the number of users. It also includes a search function that updates results on each keyup stroke.
