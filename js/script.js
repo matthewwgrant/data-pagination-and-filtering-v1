@@ -80,7 +80,6 @@ function addPagination(list) {
 			li.appendChild(btn);
 		}
 	}
-	return ul;
 }
 
 /*
