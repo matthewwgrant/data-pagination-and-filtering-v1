@@ -44,7 +44,6 @@ function showPage(list, page) {
 
 		}
 	}
-	return ul;
 }
 
 
@@ -151,25 +150,72 @@ div.addEventListener('click', (e) => {
 	}
 });
 
+/*
+	Event listener checks the search criteria entered
+	and calls other functions with new array data from 
+	runSearch function if the button or image tag are
+	clicked. If any results are returned, they are displayed
+	and paginated properly. The event handler for the page 
+	buttons is then set to call showPage based off of the new
+	array within this event handler
+*/
 header.addEventListener('click', (e) => {
 	const searchInfo = document.querySelector('input');
 	if (e.target.tagName.toLowerCase() === 'button' || e.target.tagName.toLowerCase() === 'img') {
 		const searchResults = runSearch(searchInfo, data);
-		// console.log(searchInfo.value);
-		console.log(searchResults);
-		if (searchResults.length === 0 ) {
-			document.querySelectorAll('ul.student-list').innerHTML = `<h3>Sorry, no results found</h3>`;
-		} else if ( searchResults.length > 0 ) {
+
+		if ( searchResults.length === 0 ) {
+			document.write = `<h3>Sorry, no results found</h3>`;
+
+		} else {
 			showPage(searchResults, 1);
 			addPagination(searchResults);
+
+			div.addEventListener('click', (e) => {
+				const buttons = document.querySelectorAll('button[type="button"]');
+				for ( let i = 0; i < buttons.length; i++ ) {
+					if ( e.target === buttons[i] ) {
+							buttons[i].className = 'active';
+							showPage( searchResults, buttons[i].textContent )
+
+					} else{
+						buttons[i].className = '';
+					}
+				}
+			});
 		}
-
-
-		console.log(searchResults.length);
 	} 
-
-
 });
+
+header.addEventListener('keyup', (e) => {
+	const searchInfo = document.querySelector('input');
+	const searchResults = runSearch(searchInfo, data);
+
+	if ( searchResults.length === 0 ) {
+		document.querySelector('ul.student-list').innerHTML = `<h3>Sorry, no results found</h3>`;
+		document.querySelector('.pagination').style.display = 'none';
+
+	} else if ( searchResults.length > 0 ) {
+		showPage(searchResults, 1);
+		addPagination(searchResults);
+
+		div.addEventListener('click', (e) => {
+			const buttons = document.querySelectorAll('button[type="button"]');
+			for ( let i = 0; i < buttons.length; i++ ) {
+				if ( e.target === buttons[i] ) {
+						buttons[i].className = 'active';
+						showPage( searchResults, buttons[i].textContent )
+				} else{
+					buttons[i].className = '';
+				}
+			}
+		});
+
+	} else {
+		showPage(data, 1);
+		addPagination(data);
+	}
+})
 
 // function calls
 showPage(data, 1);
