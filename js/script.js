@@ -159,7 +159,7 @@ header.addEventListener('click', (e) => {
 		// console.log(searchInfo.value);
 		console.log(searchResults);
 		if (searchResults.length === 0 ) {
-			document.querySelectorAll('ul.student-list').innerHTML = `<h3>Sorry, no reults found</h3>`;
+			document.querySelectorAll('ul.student-list').innerHTML = `<h3>Sorry, no results found</h3>`;
 		} else if ( searchResults.length > 0 ) {
 			showPage(searchResults, 1);
 			addPagination(searchResults);
