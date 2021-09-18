@@ -147,8 +147,9 @@ div.addEventListener('click', (e) => {
 		if ( e.target === buttons[i] ) {
 				buttons[i].className = 'active';
 				showPage( data, buttons[i].textContent )
-		} else{
+		} else if (e.target.tagName !== 'LI') {
 			buttons[i].className = '';
+			console.log(e.target.tagName);
 		}
 	}
 });
@@ -176,14 +177,14 @@ header.addEventListener('keyup', (e) => {
 		showPage(searchResults, 1);
 		addPagination(searchResults);
 		document.querySelector('.pagination').style.display = 'block'; 
-		
+
 		div.addEventListener('click', (e) => {
 			const buttons = document.querySelectorAll('button[type="button"]');
 			for ( let i = 0; i < buttons.length; i++ ) {
 				if ( e.target === buttons[i] ) {
 						buttons[i].className = 'active';
 						showPage( searchResults, buttons[i].textContent )
-				} else{
+				} else if (e.target.tagName !== 'LI'){
 					buttons[i].className = '';
 				}
 			}
@@ -200,7 +201,7 @@ header.addEventListener('keyup', (e) => {
 				if ( e.target === buttons[i] ) {
 						buttons[i].className = 'active';
 						showPage( data, buttons[i].textContent )
-				} else{
+				} else if (e.target.tagName !== 'LI') {
 					buttons[i].className = '';
 				}
 			}
