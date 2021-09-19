@@ -121,17 +121,11 @@ function runSearch(searchInput, list) {
 	for ( let i = 0; i < list.length; i++ ) {
 		const fullName = `${list[i].name.first.toLowerCase()} ${list[i].name.last.toLowerCase()}`;
 		if ( searchInput.value.length !== 0 && fullName.includes(searchInput.value.toLowerCase()) ) {
-			// console.log(fullName);
 			results.push(list[i]);
 		}
 	}
-	// if ( results.length === 0 ) {
-	// 	ul.innerHTML = `<h3>Sorry, there were no matching results</h3>`;
-	// 	console.log(results.length);
-	// } else {
-		return results;
-	// }
-	
+
+	return results;	
 }
 
 	
@@ -147,7 +141,7 @@ div.addEventListener('click', (e) => {
 		if ( e.target === buttons[i] ) {
 				buttons[i].className = 'active';
 				showPage( data, buttons[i].textContent )
-		} else if (e.target.tagName !== 'LI') {
+		} else if (e.target.tagName === 'BUTTON') {
 			buttons[i].className = '';
 			console.log(e.target.tagName);
 		}
@@ -184,7 +178,7 @@ header.addEventListener('keyup', (e) => {
 				if ( e.target === buttons[i] ) {
 						buttons[i].className = 'active';
 						showPage( searchResults, buttons[i].textContent )
-				} else if (e.target.tagName !== 'LI'){
+				} else if (e.target.tagName === 'BUTTON'){
 					buttons[i].className = '';
 				}
 			}
@@ -201,8 +195,9 @@ header.addEventListener('keyup', (e) => {
 				if ( e.target === buttons[i] ) {
 						buttons[i].className = 'active';
 						showPage( data, buttons[i].textContent )
-				} else if (e.target.tagName !== 'LI') {
+				} else if (e.target.tagName === 'BUTTON') {
 					buttons[i].className = '';
+					console.log(e.target.tagName);
 				}
 			}
 		});
